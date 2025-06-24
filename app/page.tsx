@@ -2,6 +2,7 @@ import { CareerCard, GameCard, BlogCard } from 'app/components/cards'
 import { getCareerPosts } from 'app/career/utils'
 import { getGames } from 'app/games/utils'
 import { getBlogPosts } from 'app/blog/utils'
+import Link from 'next/link'
 
 export default function Page() {
   const careerPosts = getCareerPosts()
@@ -34,12 +35,12 @@ export default function Page() {
         <div>
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-xl font-semibold tracking-tight">Latest Experience</h2>
-            <a 
+            <Link 
               href="/career" 
               className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
             >
               View all experience →
-            </a>
+            </Link>
           </div>
           {latestCareer && (
             <CareerCard 
@@ -53,12 +54,12 @@ export default function Page() {
         <div>
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-xl font-semibold tracking-tight">Featured Game</h2>
-            <a 
+            <Link 
               href="/games" 
               className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
             >
               View all games →
-            </a>
+            </Link>
           </div>
           {featuredGame && (
             <GameCard 
@@ -72,12 +73,12 @@ export default function Page() {
         <div>
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-xl font-semibold tracking-tight">Latest Posts</h2>
-            <a 
+            <Link 
               href="/blog" 
               className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
             >
               View all posts →
-            </a>
+            </Link>
           </div>
           <div className="space-y-4">
             {latestBlogs.map((post) => (
