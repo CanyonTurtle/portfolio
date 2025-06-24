@@ -8,27 +8,9 @@ function RoundedImage(props) {
   return <img alt={props.alt} className="rounded-lg" {...props} />
 }
 
-// Base card wrapper component
-function CardWrapper({ children, href, className = "" }) {
-  if (href) {
-    const isExternal = href.startsWith('http')
-    return (
-      <Link 
-        href={href} 
-        className={`group block ${className}`}
-        target={isExternal ? "_blank" : undefined}
-        rel={isExternal ? "noopener noreferrer" : undefined}
-      >
-        {children}
-      </Link>
-    )
-  }
-  return <div className={className}>{children}</div>
-}
-
 // Career card component
 export function CareerCard({ post, compact = false, href }) {
-  const cardContent = (
+  return (
     <div className="bg-white dark:bg-neutral-900 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 border border-neutral-200 dark:border-neutral-800 p-4">
       <div className="flex gap-4">
         <div className="flex-shrink-0">
@@ -36,7 +18,7 @@ export function CareerCard({ post, compact = false, href }) {
             <RoundedImage
               src={getImageFullPath(post.metadata.image)}
               alt={post.metadata.title}
-              className="w-24 h-24 object-cover group-hover:scale-105 transition-transform duration-200 rounded-lg"
+              className="w-24 h-24 object-cover hover:scale-105 transition-transform duration-200 rounded-lg"
             />
           ) : (
             <div className="w-24 h-24 bg-gradient-to-br from-neutral-100 to-neutral-200 dark:from-neutral-800 dark:to-neutral-700 flex items-center justify-center rounded-lg">
@@ -47,7 +29,7 @@ export function CareerCard({ post, compact = false, href }) {
           )}
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="font-semibold text-lg mb-2 text-neutral-900 dark:text-neutral-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+          <h3 className="font-semibold text-lg mb-2 text-neutral-900 dark:text-neutral-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
             {post.metadata.position}
           </h3>
           {post.metadata.company && (
@@ -109,9 +91,12 @@ export function CareerCard({ post, compact = false, href }) {
                     Source
                   </Link>
                 )}
-                <span className="inline-flex items-center px-3 py-1 text-xs font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200">
+                <Link
+                  href={href}
+                  className="inline-flex items-center px-3 py-1 text-xs font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200"
+                >
                   Read more
-                </span>
+                </Link>
               </div>
             </div>
           )}
@@ -119,13 +104,11 @@ export function CareerCard({ post, compact = false, href }) {
       </div>
     </div>
   )
-
-  return <CardWrapper href={href}>{cardContent}</CardWrapper>
 }
 
 // Game card component
 export function GameCard({ game, compact = false, href }) {
-  const cardContent = (
+  return (
     <div className="bg-white dark:bg-neutral-900 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 border border-neutral-200 dark:border-neutral-800 p-4">
       <div className="flex gap-4">
         <div className="flex-shrink-0">
@@ -133,7 +116,7 @@ export function GameCard({ game, compact = false, href }) {
             <RoundedImage
               src={getImageFullPath(game.metadata.image)}
               alt={game.metadata.title}
-              className="w-24 h-24 object-cover group-hover:scale-105 transition-transform duration-200 rounded-lg"
+              className="w-24 h-24 object-cover hover:scale-105 transition-transform duration-200 rounded-lg"
             />
           ) : (
             <div className="w-24 h-24 bg-gradient-to-br from-neutral-100 to-neutral-200 dark:from-neutral-800 dark:to-neutral-700 flex items-center justify-center rounded-lg">
@@ -144,7 +127,7 @@ export function GameCard({ game, compact = false, href }) {
           )}
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="font-semibold text-lg mb-2 text-neutral-900 dark:text-neutral-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+          <h3 className="font-semibold text-lg mb-2 text-neutral-900 dark:text-neutral-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
             {game.metadata.title}
           </h3>
           <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3 line-clamp-2">
@@ -194,9 +177,12 @@ export function GameCard({ game, compact = false, href }) {
                     Source
                   </Link>
                 )}
-                <span className="inline-flex items-center px-3 py-1 text-xs font-medium text-neutral-700 dark:text-neutral-300 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded-md transition-colors duration-200">
+                <Link
+                  href={href}
+                  className="inline-flex items-center px-3 py-1 text-xs font-medium text-neutral-700 dark:text-neutral-300 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded-md transition-colors duration-200"
+                >
                   Read more
-                </span>
+                </Link>
               </div>
             </div>
           )}
@@ -204,8 +190,6 @@ export function GameCard({ game, compact = false, href }) {
       </div>
     </div>
   )
-
-  return <CardWrapper href={href}>{cardContent}</CardWrapper>
 }
 
 // Blog card component
@@ -249,7 +233,21 @@ export function BlogCard({ post, compact = false, href }) {
     </div>
   )
 
-  return <CardWrapper href={href}>{cardContent}</CardWrapper>
+  if (href) {
+    const isExternal = href.startsWith('http')
+    return (
+      <Link 
+        href={href} 
+        className="group block"
+        target={isExternal ? "_blank" : undefined}
+        rel={isExternal ? "noopener noreferrer" : undefined}
+      >
+        {cardContent}
+      </Link>
+    )
+  }
+
+  return cardContent
 }
 
 // Blog posts list component
