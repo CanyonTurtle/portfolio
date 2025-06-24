@@ -3,6 +3,7 @@ import { CustomMDX } from 'app/components/mdx'
 import { formatDate, getGames } from 'app/games/utils'
 import { baseUrl } from 'app/sitemap'
 import Link from 'next/link'
+import { getImageFullPath } from 'base-path'
 
 // Import RoundedImage from the MDX components
 function RoundedImage(props) {
@@ -82,7 +83,7 @@ export default function Game({ params }) {
             dateModified: game.metadata.publishedAt,
             description: game.metadata.summary,
             image: game.metadata.image
-              ? `${baseUrl}${game.metadata.image}`
+              ? getImageFullPath(game.metadata.image)
               : `/og?title=${encodeURIComponent(game.metadata.title)}`,
             url: `${baseUrl}/games/${game.slug}`,
             author: {
@@ -100,7 +101,7 @@ export default function Game({ params }) {
           <div className="flex-shrink-0">
             {game.metadata.image ? (
               <RoundedImage
-                src={game.metadata.image}
+                src={getImageFullPath(game.metadata.image)}
                 alt={game.metadata.title}
                 className="w-64 h-auto object-cover rounded-lg shadow-md"
               />

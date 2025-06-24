@@ -1,7 +1,8 @@
 import { getBlogPosts } from 'app/blog/utils'
 import { getGames } from 'app/games/utils'
+import { baseUrl as baseUrlGlobal } from 'base-path'
 
-export const baseUrl = 'https://portfolio-blog-starter.vercel.app'
+export const baseUrl = baseUrlGlobal;
 
 export const dynamic = 'force-static'
 
