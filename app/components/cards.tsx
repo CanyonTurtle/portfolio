@@ -196,14 +196,24 @@ export function GameCard({ game, compact = false, href }) {
 export function BlogCard({ post, compact = false, href }) {
   const cardContent = (
     <div className="bg-white dark:bg-neutral-900 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 border border-neutral-200 dark:border-neutral-800 p-4">
-      <div className="flex flex-col sm:flex-row sm:items-start gap-3">
+      <div className="flex gap-4">
         <div className="flex-shrink-0">
-          <p className="text-sm text-neutral-500 dark:text-neutral-400 tabular-nums font-mono">
-            {formatDate(post.metadata.publishedAt, false)}
-          </p>
+          {post.metadata.image ? (
+            <RoundedImage
+              src={getImageFullPath(post.metadata.image)}
+              alt={post.metadata.title}
+              className="w-24 h-24 object-cover group-hover:scale-105 transition-transform duration-200 rounded-lg"
+            />
+          ) : (
+            <div className="w-24 h-24 bg-gradient-to-br from-neutral-100 to-neutral-200 dark:from-neutral-800 dark:to-neutral-700 flex items-center justify-center rounded-lg">
+              <div className="text-neutral-400 dark:text-neutral-500 text-2xl font-bold">
+                {post.metadata.title.charAt(0)}
+              </div>
+            </div>
+          )}
         </div>
         <div className="flex-1 min-w-0">
-          <div className="flex items-start gap-2">
+          <div className="flex items-start gap-2 mb-2">
             <h3 className="text-lg font-medium text-neutral-900 dark:text-neutral-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-tight">
               {post.metadata.title}
             </h3>
@@ -223,8 +233,11 @@ export function BlogCard({ post, compact = false, href }) {
               </svg>
             )}
           </div>
+          <p className="text-sm text-neutral-500 dark:text-neutral-400 tabular-nums font-mono mb-2">
+            {formatDate(post.metadata.publishedAt, false)}
+          </p>
           {post.metadata.summary && (
-            <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400 line-clamp-2 leading-relaxed">
+            <p className="text-sm text-neutral-600 dark:text-neutral-400 line-clamp-2 leading-relaxed">
               {post.metadata.summary}
             </p>
           )}
