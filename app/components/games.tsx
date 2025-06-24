@@ -47,7 +47,7 @@ export function GamesList() {
                   <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3 line-clamp-2">
                     {game.metadata.summary}
                   </p>
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                     <div className="flex items-center gap-2 text-xs text-neutral-500 dark:text-neutral-500">
                       <span>{formatDate(game.metadata.publishedAt, false)}</span>
                       {game.metadata.genre && (
@@ -56,7 +56,7 @@ export function GamesList() {
                         </span>
                       )}
                     </div>
-                    <div className="flex gap-2">
+                    <div className="flex flex-wrap gap-2">
                       {game.metadata.externalLink && (
                         <Link
                           href={game.metadata.externalLink}
