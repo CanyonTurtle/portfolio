@@ -21,13 +21,7 @@ export function GamesList() {
           return 1
         })
         .map((game) => (
-          <Link
-            key={game.slug}
-            className="group block"
-            href={game.metadata.externalLink || `/games/${game.slug}`}
-            target={game.metadata.externalLink ? "_blank" : undefined}
-            rel={game.metadata.externalLink ? "noopener noreferrer" : undefined}
-          >
+          <div key={game.slug} className="group">
             <div className="bg-white dark:bg-neutral-900 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 border border-neutral-200 dark:border-neutral-800 p-4">
               <div className="flex gap-4">
                 <div className="flex-shrink-0">
@@ -46,41 +40,44 @@ export function GamesList() {
                   )}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-2">
-                    <h3 className="font-semibold text-lg text-neutral-900 dark:text-neutral-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                      {game.metadata.title}
-                    </h3>
-                    {game.metadata.externalLink && (
-                      <svg
-                        className="w-4 h-4 text-neutral-400 dark:text-neutral-500"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                        />
-                      </svg>
-                    )}
-                  </div>
+                  <h3 className="font-semibold text-lg mb-2 text-neutral-900 dark:text-neutral-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                    {game.metadata.title}
+                  </h3>
                   <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3 line-clamp-2">
                     {game.metadata.summary}
                   </p>
-                  <div className="flex items-center justify-between text-xs text-neutral-500 dark:text-neutral-500">
-                    <span>{formatDate(game.metadata.publishedAt, false)}</span>
-                    {game.metadata.genre && (
-                      <span className="bg-neutral-100 dark:bg-neutral-800 px-2 py-1 rounded-full">
-                        {game.metadata.genre}
-                      </span>
-                    )}
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-xs text-neutral-500 dark:text-neutral-500">
+                      <span>{formatDate(game.metadata.publishedAt, false)}</span>
+                      {game.metadata.genre && (
+                        <span className="bg-neutral-100 dark:bg-neutral-800 px-2 py-1 rounded-full">
+                          {game.metadata.genre}
+                        </span>
+                      )}
+                    </div>
+                    <div className="flex gap-2">
+                      {game.metadata.externalLink && (
+                        <Link
+                          href={game.metadata.externalLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center px-3 py-1 text-xs font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200"
+                        >
+                          Play Now
+                        </Link>
+                      )}
+                      <Link
+                        href={`/games/${game.slug}`}
+                        className="inline-flex items-center px-3 py-1 text-xs font-medium text-neutral-700 dark:text-neutral-300 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded-md transition-colors duration-200"
+                      >
+                        Read more
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </Link>
+          </div>
         ))}
     </div>
   )
