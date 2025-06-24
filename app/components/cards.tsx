@@ -58,6 +58,12 @@ export function CareerCard({ post, compact = false, href }) {
                 )}
               </div>
               <div className="flex flex-wrap gap-2">
+              <Link
+                  href={href}
+                  className="inline-flex items-center px-3 py-1 text-xs font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200"
+                >
+                  Read more
+                </Link>
                 {post.metadata.externalLink && (
                   <Link
                     href={post.metadata.externalLink}
@@ -91,12 +97,7 @@ export function CareerCard({ post, compact = false, href }) {
                     Source
                   </Link>
                 )}
-                <Link
-                  href={href}
-                  className="inline-flex items-center px-3 py-1 text-xs font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200"
-                >
-                  Read more
-                </Link>
+                
               </div>
             </div>
           )}
