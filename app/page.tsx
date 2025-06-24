@@ -34,7 +34,7 @@ export default function Page() {
         {/* Latest Career Highlight */}
         <div>
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-semibold tracking-tight">Latest Experience</h2>
+            <h2 className="text-xl font-semibold tracking-tight">Latest experience</h2>
             <Link 
               href="/career" 
               className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
@@ -53,7 +53,7 @@ export default function Page() {
         {/* Featured Game */}
         <div>
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-semibold tracking-tight">Featured Game</h2>
+            <h2 className="text-xl font-semibold tracking-tight">Featured game</h2>
             <Link 
               href="/games" 
               className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
@@ -72,7 +72,7 @@ export default function Page() {
         {/* Latest Blog Posts */}
         <div>
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-semibold tracking-tight">Latest Posts</h2>
+            <h2 className="text-xl font-semibold tracking-tight">Latest posts</h2>
             <Link 
               href="/blog" 
               className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"

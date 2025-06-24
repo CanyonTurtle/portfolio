@@ -149,7 +149,7 @@ export default function Game({ params }) {
                   rel="noopener noreferrer"
                   className="inline-flex items-center px-6 py-3 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors duration-200 shadow-sm hover:shadow-md"
                 >
-                  Play Now
+                  Play now
                 </Link>
               )}
               {game.metadata.source && (
@@ -157,10 +157,10 @@ export default function Game({ params }) {
                   href={game.metadata.source}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center px-6 py-3 text-sm font-medium text-neutral-700 dark:text-neutral-300 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded-lg transition-colors duration-200"
+                  className="inline-flex items-center px-3 py-1 text-xs font-medium text-neutral-700 dark:text-neutral-300 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded-md transition-colors duration-200"
                 >
                   <svg
-                    className="w-4 h-4 mr-2"
+                    className="w-3 h-3 mr-1"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -172,7 +172,7 @@ export default function Game({ params }) {
                       d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
                     />
                   </svg>
-                  View Source
+                  View source
                 </Link>
               )}
               <Link
