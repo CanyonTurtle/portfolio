@@ -41,11 +41,11 @@ export function CareerList() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <h3 className="font-semibold text-lg mb-2 text-neutral-900 dark:text-neutral-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                    {post.metadata.title}
+                    {post.metadata.position}
                   </h3>
-                  {post.metadata.position && post.metadata.company && (
+                  {post.metadata.company && (
                     <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-2">
-                      {post.metadata.position} at {post.metadata.company}
+                      {post.metadata.company}
                     </p>
                   )}
                   <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3 line-clamp-2">
@@ -53,7 +53,14 @@ export function CareerList() {
                   </p>
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                     <div className="flex items-center gap-2 text-xs text-neutral-500 dark:text-neutral-500">
-                      <span>{formatDate(post.metadata.publishedAt, false)}</span>
+                      <span>
+                        {post.metadata.startDate && post.metadata.endDate 
+                          ? `${formatDate(post.metadata.startDate, false)} - ${formatDate(post.metadata.endDate, false)}`
+                          : post.metadata.startDate 
+                          ? `${formatDate(post.metadata.startDate, false)} - Present`
+                          : formatDate(post.metadata.publishedAt, false)
+                        }
+                      </span>
                       {post.metadata.technologies && (
                         <span className="bg-neutral-100 dark:bg-neutral-800 px-2 py-1 rounded-full">
                           {post.metadata.technologies}
@@ -66,9 +73,9 @@ export function CareerList() {
                           href={post.metadata.externalLink}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center px-3 py-1 text-xs font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200"
+                          className="inline-flex items-center px-3 py-1 text-xs font-medium text-neutral-700 dark:text-neutral-300 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded-md transition-colors duration-200"
                         >
-                          View Project
+                          View LinkedIn
                         </Link>
                       )}
                       {post.metadata.source && (
@@ -96,7 +103,7 @@ export function CareerList() {
                       )}
                       <Link
                         href={`/career/${post.slug}`}
-                        className="inline-flex items-center px-3 py-1 text-xs font-medium text-neutral-700 dark:text-neutral-300 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded-md transition-colors duration-200"
+                        className="inline-flex items-center px-3 py-1 text-xs font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200"
                       >
                         Read more
                       </Link>
