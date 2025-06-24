@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const isProd = process.env.NODE_ENV === 'production';
-console.log("isProd\n\n\n\n\n", isProd, process.env.NODE_ENV, "\n\n\n\n\n")
+
 const nextConfig: NextConfig = {
   /* config options here */
   transpilePackages: ['next-mdx-remote'],
