@@ -10,6 +10,9 @@ const navItems = {
   '/games': {
     name: 'games',
   },
+  '/career': {
+    name: 'career',
+  },
 }
 
 export function Navbar() {
