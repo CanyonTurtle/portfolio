@@ -6,6 +6,7 @@ export type BaseMetadata = {
   publishedAt: string
   summary: string
   image?: string
+  source?: string
 }
 
 export function parseFrontmatter(fileContent: string) {
