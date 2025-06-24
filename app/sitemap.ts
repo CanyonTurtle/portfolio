@@ -1,4 +1,5 @@
 import { getBlogPosts } from 'app/blog/utils'
+import { getGames } from 'app/games/utils'
 
 export const baseUrl = 'https://portfolio-blog-starter.vercel.app'
 
@@ -10,10 +11,15 @@ export default async function sitemap() {
     lastModified: post.metadata.publishedAt,
   }))
 
-  let routes = ['', '/blog'].map((route) => ({
+  let games = getGames().map((game) => ({
+    url: `${baseUrl}/games/${game.slug}`,
+    lastModified: game.metadata.publishedAt,
+  }))
+
+  let routes = ['', '/blog', '/games'].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date().toISOString().split('T')[0],
   }))
 
-  return [...routes, ...blogs]
+  return [...routes, ...blogs, ...games]
 }
