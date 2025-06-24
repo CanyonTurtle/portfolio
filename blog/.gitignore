@@ -10,7 +10,7 @@
 
 # next.js
 /.next/
-# /out/ Deploy to GH pages
+/out/ 
 
 # production
 /build

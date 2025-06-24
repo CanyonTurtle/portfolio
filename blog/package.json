@@ -4,7 +4,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "deploy": "next build && gh-pages -d out"
+    "static": "next build && touch ./out/.nojekyll && echo 'canyonturtle.github.io/portfolio' > ./out/CNAME",
+    "deploy": "pnpm run static && gh-pages -d out -t"
   },
   "dependencies": {
     "@tailwindcss/postcss": "4.0.0-alpha.13",
