@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { formatDate } from 'app/lib/mdx'
+import { getImageFullPath } from 'base-path'
 
 // Import RoundedImage from the MDX components
 function RoundedImage(props) {
@@ -26,7 +27,7 @@ export function CareerCard({ post, compact = false, href }) {
         <div className="flex-shrink-0">
           {post.metadata.image ? (
             <RoundedImage
-              src={post.metadata.image}
+              src={getImageFullPath(post.metadata.image)}
               alt={post.metadata.title}
               className="w-24 h-24 object-cover group-hover:scale-105 transition-transform duration-200 rounded-lg"
             />
@@ -123,7 +124,7 @@ export function GameCard({ game, compact = false, href }) {
         <div className="flex-shrink-0">
           {game.metadata.image ? (
             <RoundedImage
-              src={game.metadata.image}
+              src={getImageFullPath(game.metadata.image)}
               alt={game.metadata.title}
               className="w-24 h-24 object-cover group-hover:scale-105 transition-transform duration-200 rounded-lg"
             />
