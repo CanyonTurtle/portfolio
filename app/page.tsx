@@ -19,7 +19,7 @@ export default function Page() {
   const featuredGame = games.find(game => game.slug === 'zelda-tears-of-kingdom') || games[0]
 
   // Get a featured project
-  const featuredProject = projects[0]
+  const featuredProject = projects.find(project => project.slug === 'see-sharp') || projects[0]
 
   // Get the latest 3 blog posts
   const latestBlogs = blogPosts
@@ -32,7 +32,7 @@ export default function Page() {
         Cannon Tuttle
       </h1>
       <p className="mb-8 text-neutral-700 dark:text-neutral-300 leading-relaxed">
-        {`I'm a dedicated software engineer with a natural curiosity for and a growing skillset of fullstack skills like programming, system design, networking, and security. Not only do I have industry experience working at Redo, but I also love to make my own projects - especially games!`}
+        {`I'm a dedicated software engineer with a natural curiosity for and a growing skillset of fullstack skills like programming, system design, networking, and security. Not only do I have industry experience working at Redo, but I also love to make my own projects - especially games! I also have a mathematical literacy that allows me to model and optimize complex systems, especially with uncertainties.`}
       </p>
       
       <div className="space-y-12">
