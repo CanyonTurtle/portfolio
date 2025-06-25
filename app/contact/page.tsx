@@ -55,7 +55,7 @@ export default function Page() {
             Resume & references
           </h2>
           <p className="text-neutral-700 dark:text-neutral-300">
-            Resume, CV, and references available upon request.
+            Resume, CV, and references available upon request. Feel free to reach out to me at the email above or on LinkedIn.
           </p>
         </div>
       </div>
