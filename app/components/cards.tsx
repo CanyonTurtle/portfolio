@@ -8,6 +8,47 @@ function RoundedImage(props) {
   return <img alt={props.alt} className="rounded-lg" {...props} />
 }
 
+function DateText({ date }: { date: string }) {
+  return (
+    <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1">
+      {formatDate(date, false)}
+    </p>
+  )
+}
+
+function TagChip({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="bg-neutral-100 dark:bg-neutral-800 px-2 py-1 rounded-full text-neutral-700 dark:text-neutral-300">
+      {children}
+    </span>
+  )
+}
+
+function CtaButton({ href, children }: { href: string, children: React.ReactNode }) {
+  return (
+    <Link
+      href={href}
+      className="inline-flex items-center px-3 py-1 text-xs font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200"
+    >
+      {children}
+    </Link>
+  )
+}
+
+function OtherButton({ href, children, icon }: { href: string, children: React.ReactNode, icon?: React.ReactNode }) {
+  return (
+    <Link
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center px-3 py-1 text-xs font-medium text-neutral-700 dark:text-neutral-300 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded-md transition-colors duration-200"
+    >
+      {icon}
+      {children}
+    </Link>
+  )
+}
+
 // Career card component
 export function CareerCard({ post, compact = false, href }) {
   return (
@@ -43,61 +84,49 @@ export function CareerCard({ post, compact = false, href }) {
           {!compact && (
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
               <div className="flex items-center gap-2 text-xs text-neutral-500 dark:text-neutral-500">
-                <span>
-                  {post.metadata.startDate && post.metadata.endDate 
-                    ? `${formatDate(post.metadata.startDate, false)} - ${formatDate(post.metadata.endDate, false)}`
-                    : post.metadata.startDate 
-                    ? `${formatDate(post.metadata.startDate, false)} - Present`
-                    : formatDate(post.metadata.publishedAt, false)
-                  }
-                </span>
+                {post.metadata.startDate && post.metadata.endDate ? (
+                  <DateText date={post.metadata.startDate} />
+                ) : post.metadata.startDate ? (
+                  <DateText date={post.metadata.startDate} />
+                ) : (
+                  <DateText date={post.metadata.publishedAt} />
+                )}
                 {post.metadata.technologies && (
-                  <span className="bg-neutral-100 dark:bg-neutral-800 px-2 py-1 rounded-full">
-                    {post.metadata.technologies}
-                  </span>
+                  <TagChip>{post.metadata.technologies}</TagChip>
                 )}
               </div>
               <div className="flex flex-wrap gap-2">
-              <Link
-                  href={href}
-                  className="inline-flex items-center px-3 py-1 text-xs font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200"
-                >
-                  Read more
-                </Link>
+                <CtaButton href={href}>Read more</CtaButton>
                 {post.metadata.externalLink && (
-                  <Link
-                    href={post.metadata.externalLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center px-3 py-1 text-xs font-medium text-neutral-700 dark:text-neutral-300 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded-md transition-colors duration-200"
+                  <OtherButton href={post.metadata.externalLink} icon={<svg
+                    className="w-3 h-3 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
                   >
-                    View LinkedIn
-                  </Link>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                    />
+                  </svg>}>View LinkedIn</OtherButton>
                 )}
                 {post.metadata.source && (
-                  <Link
-                    href={post.metadata.source}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center px-3 py-1 text-xs font-medium text-neutral-700 dark:text-neutral-300 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded-md transition-colors duration-200"
+                  <OtherButton href={post.metadata.source} icon={<svg
+                    className="w-3 h-3 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
                   >
-                    <svg
-                      className="w-3 h-3 mr-1"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-                      />
-                    </svg>
-                    Source
-                  </Link>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                    />
+                  </svg>}>Source</OtherButton>
                 )}
-                
               </div>
             </div>
           )}
@@ -137,53 +166,31 @@ export function GameCard({ game, compact = false, href }) {
           {!compact && (
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
               <div className="flex items-center gap-2 text-xs text-neutral-500 dark:text-neutral-500">
-                <span>{formatDate(game.metadata.publishedAt, false)}</span>
+                <DateText date={game.metadata.publishedAt} />
                 {game.metadata.genre && (
-                  <span className="bg-neutral-100 dark:bg-neutral-800 px-2 py-1 rounded-full">
-                    {game.metadata.genre}
-                  </span>
+                  <TagChip>{game.metadata.genre}</TagChip>
                 )}
               </div>
               <div className="flex flex-wrap gap-2">
                 {game.metadata.externalLink && (
-                  <Link
-                    href={game.metadata.externalLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center px-3 py-1 text-xs font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200"
-                  >
-                    Play now
-                  </Link>
+                  <CtaButton href={game.metadata.externalLink}>Play now</CtaButton>
                 )}
                 {game.metadata.source && (
-                  <Link
-                    href={game.metadata.source}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center px-3 py-1 text-xs font-medium text-neutral-700 dark:text-neutral-300 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded-md transition-colors duration-200"
+                  <OtherButton href={game.metadata.source} icon={<svg
+                    className="w-3 h-3 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
                   >
-                    <svg
-                      className="w-3 h-3 mr-1"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-                      />
-                    </svg>
-                    Source
-                  </Link>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                    />
+                  </svg>}>Source</OtherButton>
                 )}
-                <Link
-                  href={href}
-                  className="inline-flex items-center px-3 py-1 text-xs font-medium text-neutral-700 dark:text-neutral-300 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded-md transition-colors duration-200"
-                >
-                  Read more
-                </Link>
+                <OtherButton href={href}>Read more</OtherButton>
               </div>
             </div>
           )}
@@ -223,53 +230,31 @@ export function ProjectCard({ project, compact = false, href }) {
           {!compact && (
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
               <div className="flex items-center gap-2 text-xs text-neutral-500 dark:text-neutral-500">
-                <span>{formatDate(project.metadata.publishedAt, false)}</span>
+                <DateText date={project.metadata.publishedAt} />
                 {project.metadata.category && (
-                  <span className="bg-neutral-100 dark:bg-neutral-800 px-2 py-1 rounded-full">
-                    {project.metadata.category}
-                  </span>
+                  <TagChip>{project.metadata.category}</TagChip>
                 )}
               </div>
               <div className="flex flex-wrap gap-2">
                 {project.metadata.externalLink && (
-                  <Link
-                    href={project.metadata.externalLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center px-3 py-1 text-xs font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200"
-                  >
-                    View project
-                  </Link>
+                  <CtaButton href={project.metadata.externalLink}>View project</CtaButton>
                 )}
                 {project.metadata.source && (
-                  <Link
-                    href={project.metadata.source}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center px-3 py-1 text-xs font-medium text-neutral-700 dark:text-neutral-300 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded-md transition-colors duration-200"
+                  <OtherButton href={project.metadata.source} icon={<svg
+                    className="w-3 h-3 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
                   >
-                    <svg
-                      className="w-3 h-3 mr-1"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-                      />
-                    </svg>
-                    Source
-                  </Link>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                    />
+                  </svg>}>Source</OtherButton>
                 )}
-                <Link
-                  href={href}
-                  className="inline-flex items-center px-3 py-1 text-xs font-medium text-neutral-700 dark:text-neutral-300 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded-md transition-colors duration-200"
-                >
-                  Read more
-                </Link>
+                <OtherButton href={href}>Read more</OtherButton>
               </div>
             </div>
           )}
@@ -320,9 +305,7 @@ export function BlogCard({ post, compact = false, href }) {
               </svg>
             )}
           </div>
-          <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1">
-            {formatDate(post.metadata.publishedAt, false)}
-          </p>
+          <DateText date={post.metadata.publishedAt} />
           <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">
             {post.metadata.summary}
           </p>
