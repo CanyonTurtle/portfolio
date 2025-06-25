@@ -29,7 +29,7 @@ export default function Page() {
   return (
     <section>
       <h1 className="mb-8 text-2xl font-semibold tracking-tighter">
-        Cannon Tuttle
+        Cannon Tuttle's Portfolio
       </h1>
       <p className="mb-8 text-neutral-700 dark:text-neutral-300 leading-relaxed">
         {`I'm a dedicated software engineer with a natural curiosity for and a growing skillset of fullstack skills like programming, system design, networking, and security. Not only do I have industry experience working at Redo, but I also love to make my own projects - especially games! I also have a mathematical literacy that allows me to model and optimize complex systems, especially with uncertainties.`}
