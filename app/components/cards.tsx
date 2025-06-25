@@ -82,7 +82,7 @@ export function CareerCard({ post, compact = false, href }) {
             {post.metadata.summary}
           </p>
           {!compact && (
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <div className="flex flex-col gap-1">
               <div className="flex items-center gap-2 text-xs text-neutral-500 dark:text-neutral-500">
                 {post.metadata.startDate && post.metadata.endDate ? (
                   <DateText date={post.metadata.startDate} />
@@ -95,7 +95,7 @@ export function CareerCard({ post, compact = false, href }) {
                   <TagChip>{post.metadata.technologies}</TagChip>
                 )}
               </div>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-row gap-2 mt-1">
                 <CtaButton href={href}>Read more</CtaButton>
                 {post.metadata.externalLink && (
                   <OtherButton href={post.metadata.externalLink} icon={<svg
@@ -164,14 +164,14 @@ export function GameCard({ game, compact = false, href }) {
             {game.metadata.summary}
           </p>
           {!compact && (
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <div className="flex flex-col gap-1">
               <div className="flex items-center gap-2 text-xs text-neutral-500 dark:text-neutral-500">
                 <DateText date={game.metadata.publishedAt} />
                 {game.metadata.genre && (
                   <TagChip>{game.metadata.genre}</TagChip>
                 )}
               </div>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-row gap-2 mt-1">
                 {game.metadata.externalLink && (
                   <CtaButton href={game.metadata.externalLink}>Play now</CtaButton>
                 )}
@@ -228,14 +228,14 @@ export function ProjectCard({ project, compact = false, href }) {
             {project.metadata.summary}
           </p>
           {!compact && (
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <div className="flex flex-col gap-1">
               <div className="flex items-center gap-2 text-xs text-neutral-500 dark:text-neutral-500">
                 <DateText date={project.metadata.publishedAt} />
                 {project.metadata.category && (
                   <TagChip>{project.metadata.category}</TagChip>
                 )}
               </div>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-row gap-2 mt-1">
                 {project.metadata.externalLink && (
                   <CtaButton href={project.metadata.externalLink}>View project</CtaButton>
                 )}
@@ -306,6 +306,11 @@ export function BlogCard({ post, compact = false, href }) {
             )}
           </div>
           <DateText date={post.metadata.publishedAt} />
+          {post.metadata.tags && (
+            <div className="flex items-center gap-2 text-xs text-neutral-500 dark:text-neutral-500 mb-1">
+              <TagChip>{post.metadata.tags}</TagChip>
+            </div>
+          )}
           <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">
             {post.metadata.summary}
           </p>
@@ -313,7 +318,6 @@ export function BlogCard({ post, compact = false, href }) {
       </div>
     </div>
   )
-
   if (href) {
     const isExternal = href.startsWith('http')
     return (
@@ -327,7 +331,6 @@ export function BlogCard({ post, compact = false, href }) {
       </Link>
     )
   }
-
   return cardContent
 }
 

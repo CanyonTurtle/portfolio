@@ -48,7 +48,7 @@ export default function Page() {
         </div>
       </div>
       <p className="mb-8 text-neutral-700 dark:text-neutral-300 leading-relaxed">
-        {`I'm a dedicated software engineer with a natural curiosity for and a growing skillset of fullstack skills like programming, system design, networking, and security. Not only do I have industry experience, but I also love to make my own projects - especially games! I also have a mathematical literacy that allows me to model and optimize complex systems, especially with uncertainties.`}
+        {`I'm a dedicated software engineer with a natural curiosity for and a growing skillset of fullstack skills including programming, system design, networking, and security. Not only do I have industry experience, but I also love to make my own projects - especially games! I also have a mathematical literacy that allows me to model and optimize complex systems, especially with uncertainties.`}
       </p>
       
       <div className="space-y-12">
