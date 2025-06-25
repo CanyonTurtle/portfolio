@@ -37,7 +37,7 @@ export function CareerCard({ post, compact = false, href }) {
               {post.metadata.company}
             </p>
           )}
-          <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3 line-clamp-2">
+          <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">
             {post.metadata.summary}
           </p>
           {!compact && (
@@ -131,7 +131,7 @@ export function GameCard({ game, compact = false, href }) {
           <h3 className="font-semibold text-lg mb-2 text-neutral-900 dark:text-neutral-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
             {game.metadata.title}
           </h3>
-          <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3 line-clamp-2">
+          <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">
             {game.metadata.summary}
           </p>
           {!compact && (
@@ -217,7 +217,7 @@ export function ProjectCard({ project, compact = false, href }) {
           <h3 className="font-semibold text-lg mb-2 text-neutral-900 dark:text-neutral-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
             {project.metadata.title}
           </h3>
-          <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3 line-clamp-2">
+          <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">
             {project.metadata.summary}
           </p>
           {!compact && (
@@ -320,14 +320,9 @@ export function BlogCard({ post, compact = false, href }) {
               </svg>
             )}
           </div>
-          <p className="text-sm text-neutral-500 dark:text-neutral-400 tabular-nums font-mono mb-2">
-            {formatDate(post.metadata.publishedAt, false)}
+          <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">
+            {post.metadata.summary}
           </p>
-          {post.metadata.summary && (
-            <p className="text-sm text-neutral-600 dark:text-neutral-400 line-clamp-2 leading-relaxed">
-              {post.metadata.summary}
-            </p>
-          )}
         </div>
       </div>
     </div>
