@@ -8,12 +8,29 @@ function RoundedImage(props) {
   return <img alt={props.alt} className="rounded-lg" {...props} />
 }
 
-function DateText({ date }: { date: string }) {
-  return (
-    <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1">
-      {formatDate(date, false)}
-    </p>
-  )
+function DateText({ start, end, className }: { start?: string, end?: string, className?: string }) {
+  if (start && end) {
+    return (
+      <p className={`text-xs text-neutral-500 dark:text-neutral-400 mb-1 ${className || ''}`}>
+        {formatDate(start, false)} – {end === 'Present' ? 'Present' : formatDate(end, false)}
+      </p>
+    )
+  }
+  if (start) {
+    return (
+      <p className={`text-xs text-neutral-500 dark:text-neutral-400 mb-1 ${className || ''}`}>
+        {formatDate(start, false)}
+      </p>
+    )
+  }
+  if (end) {
+    return (
+      <p className={`text-xs text-neutral-500 dark:text-neutral-400 mb-1 ${className || ''}`}>
+        {end === 'Present' ? 'Present' : formatDate(end, false)}
+      </p>
+    )
+  }
+  return null
 }
 
 function TagChip({ children }: { children: React.ReactNode }) {
@@ -83,12 +100,10 @@ export function CareerCard({ post, compact = false, href, showReadMore = true, b
           {!compact && (
             <div className="flex flex-col gap-1">
               <div className="flex items-center gap-2 text-xs text-neutral-500 dark:text-neutral-500">
-                {post.metadata.startDate && post.metadata.endDate ? (
-                  <DateText date={post.metadata.startDate} />
-                ) : post.metadata.startDate ? (
-                  <DateText date={post.metadata.startDate} />
+                {post.metadata.startDate || post.metadata.endDate ? (
+                  <DateText start={post.metadata.startDate} end={post.metadata.endDate} />
                 ) : (
-                  <DateText date={post.metadata.publishedAt} />
+                  <DateText start={post.metadata.publishedAt} />
                 )}
                 {post.metadata.technologies && (
                   <TagChip>{post.metadata.technologies}</TagChip>
@@ -169,7 +184,7 @@ export function GameCard({ game, compact = false, href, showReadMore = true, bac
           {!compact && (
             <div className="flex flex-col gap-1">
               <div className="flex items-center gap-2 text-xs text-neutral-500 dark:text-neutral-500">
-                <DateText date={game.metadata.publishedAt} />
+                <DateText start={game.metadata.publishedAt} />
                 {game.metadata.genre && (
                   <TagChip>{game.metadata.genre}</TagChip>
                 )}
@@ -237,7 +252,7 @@ export function ProjectCard({ project, compact = false, href, showReadMore = tru
           {!compact && (
             <div className="flex flex-col gap-1">
               <div className="flex items-center gap-2 text-xs text-neutral-500 dark:text-neutral-500">
-                <DateText date={project.metadata.publishedAt} />
+                <DateText start={project.metadata.publishedAt} />
                 {project.metadata.category && (
                   <TagChip>{project.metadata.category}</TagChip>
                 )}
@@ -316,15 +331,15 @@ export function BlogCard({ post, compact = false, href, showReadMore = true, bac
               </svg>
             )}
           </div>
-          <DateText date={post.metadata.publishedAt} />
+          <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">
+            {post.metadata.summary}
+          </p>
+          <DateText start={post.metadata.publishedAt} className="mb-2" />
           {post.metadata.tags && (
             <div className="flex items-center gap-2 text-xs text-neutral-500 dark:text-neutral-500 mb-1">
               <TagChip>{post.metadata.tags}</TagChip>
             </div>
           )}
-          <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">
-            {post.metadata.summary}
-          </p>
           {!compact && (
             <div className="flex flex-row gap-2 mt-1">
               {showReadMore ? (
