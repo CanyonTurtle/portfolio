@@ -112,13 +112,13 @@ export default function CareerPost({ params }) {
           
           {/* Post Info and CTA */}
           <div className="flex-1 min-w-0">
-            <h1 className="title font-semibold text-3xl tracking-tighter mb-4">
-              {post.metadata.title}
+            <h1 className="title font-semibold text-3xl tracking-tighter mb-2">
+              {post.metadata.position || post.metadata.title}
             </h1>
             
-            {post.metadata.position && post.metadata.company && (
-              <p className="text-xl text-neutral-600 dark:text-neutral-400 mb-2">
-                {post.metadata.position} at {post.metadata.company}
+            {post.metadata.company && (
+              <p className="text-xl text-neutral-600 dark:text-neutral-400 mb-4">
+                {post.metadata.company}
               </p>
             )}
             
@@ -151,7 +151,7 @@ export default function CareerPost({ params }) {
                   rel="noopener noreferrer"
                   className="inline-flex items-center px-6 py-3 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors duration-200 shadow-sm hover:shadow-md"
                 >
-                  View Project
+                  View on LinkedIn
                 </Link>
               )}
               {post.metadata.source && (
@@ -181,7 +181,7 @@ export default function CareerPost({ params }) {
                 href="/career"
                 className="inline-flex items-center px-6 py-3 text-sm font-medium text-neutral-700 dark:text-neutral-300 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded-lg transition-colors duration-200"
               >
-                ← Back to Career
+                ← Back to career
               </Link>
             </div>
           </div>
