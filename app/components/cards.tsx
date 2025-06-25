@@ -320,6 +320,9 @@ export function BlogCard({ post, compact = false, href }) {
               </svg>
             )}
           </div>
+          <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1">
+            {formatDate(post.metadata.publishedAt, false)}
+          </p>
           <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">
             {post.metadata.summary}
           </p>
