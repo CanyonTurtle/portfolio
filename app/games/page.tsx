@@ -10,7 +10,7 @@ export default function Page() {
     <section>
       <h1 className="font-semibold text-2xl mb-8 tracking-tighter">My games</h1>
       <p className="mb-8 text-neutral-700 dark:text-neutral-300 leading-relaxed">
-        A collection of games I've played, reviewed, and enjoyed. From indie gems to AAA titles, these are the experiences that have shaped my appreciation for interactive storytelling and game design.
+        Games I've made. You'll see I have a bit of a love for wasm4.org games :D
       </p>
       <GamesList />
     </section>

@@ -10,7 +10,7 @@ export default function Page() {
     <section>
       <h1 className="font-semibold text-2xl mb-8 tracking-tighter">My projects</h1>
       <p className="mb-8 text-neutral-700 dark:text-neutral-300 leading-relaxed">
-        A collection of projects I've built, contributed to, and learned from. From web applications to open source contributions, these are the technical endeavors that showcase my skills and passion for development.
+        A collection of projects I've built, contributed to, and learned from, across work and my personal projects.
       </p>
       <ProjectsList />
     </section>
