@@ -1,13 +1,15 @@
-import { CareerCard, GameCard, BlogCard } from 'app/components/cards'
+import { CareerCard, GameCard, BlogCard, ProjectCard } from 'app/components/cards'
 import { getCareerPosts } from 'app/career/utils'
 import { getGames } from 'app/games/utils'
 import { getBlogPosts } from 'app/blog/utils'
+import { getProjects } from 'app/projects/utils'
 import Link from 'next/link'
 
 export default function Page() {
   const careerPosts = getCareerPosts()
   const games = getGames()
   const blogPosts = getBlogPosts()
+  const projects = getProjects()
   
   // Get the latest career post (most recent publishedAt)
   const latestCareer = careerPosts
@@ -15,6 +17,9 @@ export default function Page() {
   
   // Get a featured game (you can change this to any specific game slug)
   const featuredGame = games.find(game => game.slug === 'zelda-tears-of-kingdom') || games[0]
+
+  // Get a featured project
+  const featuredProject = projects[0]
 
   // Get the latest 3 blog posts
   const latestBlogs = blogPosts
@@ -65,6 +70,25 @@ export default function Page() {
             <GameCard 
               game={featuredGame} 
               href={`/games/${featuredGame.slug}`}
+            />
+          )}
+        </div>
+
+        {/* Featured Project */}
+        <div>
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-xl font-semibold tracking-tight">Featured project</h2>
+            <Link 
+              href="/projects" 
+              className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
+            >
+              View all projects →
+            </Link>
+          </div>
+          {featuredProject && (
+            <ProjectCard 
+              project={featuredProject} 
+              href={`/projects/${featuredProject.slug}`}
             />
           )}
         </div>

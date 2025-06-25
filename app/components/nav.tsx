@@ -13,6 +13,9 @@ const navItems = {
   '/games': {
     name: 'games',
   },
+  '/projects': {
+    name: 'projects',
+  },
   '/blog': {
     name: 'blog',
   },

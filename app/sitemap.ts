@@ -1,6 +1,7 @@
 import { getBlogPosts } from 'app/blog/utils'
 import { getGames } from 'app/games/utils'
 import { getCareerPosts } from 'app/career/utils'
+import { getProjects } from 'app/projects/utils'
 import { baseUrl as baseUrlGlobal } from 'base-path'
 
 export const baseUrl = baseUrlGlobal;
@@ -23,10 +24,15 @@ export default async function sitemap() {
     lastModified: post.metadata.publishedAt,
   }))
 
-  let routes = ['', '/blog', '/games', '/career'].map((route) => ({
+  let projects = getProjects().map((project) => ({
+    url: `${baseUrl}/projects/${project.slug}`,
+    lastModified: project.metadata.publishedAt,
+  }))
+
+  let routes = ['', '/blog', '/games', '/career', '/projects'].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date().toISOString().split('T')[0],
   }))
 
-  return [...routes, ...blogs, ...games, ...careerPosts]
+  return [...routes, ...blogs, ...games, ...careerPosts, ...projects]
 }
