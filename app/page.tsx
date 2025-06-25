@@ -4,6 +4,8 @@ import { getGames } from 'app/games/utils'
 import { getBlogPosts } from 'app/blog/utils'
 import { getProjects } from 'app/projects/utils'
 import Link from 'next/link'
+import Image from 'next/image'
+import { getImageFullPath } from 'base-path'
 
 export default function Page() {
   const careerPosts = getCareerPosts()
@@ -28,9 +30,18 @@ export default function Page() {
 
   return (
     <section>
-      <h1 className="mb-8 text-2xl font-semibold tracking-tighter">
-        Cannon Tuttle's Portfolio
-      </h1>
+      <div className="flex flex-col items-start mb-8">
+        <Image
+          src={getImageFullPath("/images/profile-picture.jpeg")}
+          alt="Profile picture"
+          width={192}
+          height={192}
+          className="rounded-full mb-4 border border-neutral-300 dark:border-neutral-700 shadow-sm"
+        />
+        <h1 className="text-2xl font-semibold tracking-tighter">
+          Cannon Tuttle's Portfolio
+        </h1>
+      </div>
       <p className="mb-8 text-neutral-700 dark:text-neutral-300 leading-relaxed">
         {`I'm a dedicated software engineer with a natural curiosity for and a growing skillset of fullstack skills like programming, system design, networking, and security. Not only do I have industry experience working at Redo, but I also love to make my own projects - especially games! I also have a mathematical literacy that allows me to model and optimize complex systems, especially with uncertainties.`}
       </p>
