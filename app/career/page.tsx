@@ -1,4 +1,5 @@
 import { CareerList } from 'app/components/career'
+import Link from 'next/link'
 
 export const metadata = {
   title: 'Career',
@@ -10,7 +11,7 @@ export default function Page() {
     <section>
       <h1 className="font-semibold text-2xl mb-8 tracking-tighter">My career</h1>
       <p className="mb-8 text-neutral-700 dark:text-neutral-300 leading-relaxed">
-        My professional journey in software engineering. Here you'll find details about my roles, responsibilities, and the technologies I've worked with across different companies and projects.
+        My professional journey in software engineering. For detailed resume information, see <Link href="https://www.linkedin.com/in/cannontuttle/#:~:text=Show%20all%20posts-,Experience,-Experience" className="text-blue-600 hover:text-blue-700">my LinkedIn profile</Link>. Here you'll find more details about my roles, responsibilities, and accomplishments across different companies and projects.
       </p>
       <CareerList />
     </section>
