@@ -39,7 +39,6 @@ function OtherButton({ href, children, icon }: { href: string, children: React.R
   return (
     <Link
       href={href}
-      target="_blank"
       rel="noopener noreferrer"
       className="inline-flex items-center px-3 py-1 text-xs font-medium text-neutral-700 dark:text-neutral-300 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded-md transition-colors duration-200"
     >
@@ -50,7 +49,7 @@ function OtherButton({ href, children, icon }: { href: string, children: React.R
 }
 
 // Career card component
-export function CareerCard({ post, compact = false, href }) {
+export function CareerCard({ post, compact = false, href, showReadMore = true, backHref = '/career' }) {
   return (
     <div className="bg-white dark:bg-neutral-900 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 border border-neutral-200 dark:border-neutral-800 p-4">
       <div className="flex flex-col sm:flex-row gap-4 items-start">
@@ -96,7 +95,11 @@ export function CareerCard({ post, compact = false, href }) {
                 )}
               </div>
               <div className="flex flex-row gap-2 mt-1">
-                <CtaButton href={href}>Read more</CtaButton>
+                {showReadMore ? (
+                  <CtaButton href={href}>Read more</CtaButton>
+                ) : (
+                  <OtherButton href={backHref}>← Back to career</OtherButton>
+                )}
                 {post.metadata.externalLink && (
                   <OtherButton href={post.metadata.externalLink} icon={<svg
                     className="w-3 h-3 mr-1"
@@ -137,7 +140,7 @@ export function CareerCard({ post, compact = false, href }) {
 }
 
 // Game card component
-export function GameCard({ game, compact = false, href }) {
+export function GameCard({ game, compact = false, href, showReadMore = true, backHref = '/games' }) {
   return (
     <div className="bg-white dark:bg-neutral-900 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 border border-neutral-200 dark:border-neutral-800 p-4">
       <div className="flex flex-col sm:flex-row gap-4 items-start">
@@ -190,7 +193,11 @@ export function GameCard({ game, compact = false, href }) {
                     />
                   </svg>}>Source</OtherButton>
                 )}
-                <OtherButton href={href}>Read more</OtherButton>
+                {showReadMore ? (
+                  <OtherButton href={href}>Read more</OtherButton>
+                ) : (
+                  <OtherButton href={backHref}>← Back to games</OtherButton>
+                )}
               </div>
             </div>
           )}
@@ -201,7 +208,7 @@ export function GameCard({ game, compact = false, href }) {
 }
 
 // Project card component
-export function ProjectCard({ project, compact = false, href }) {
+export function ProjectCard({ project, compact = false, href, showReadMore = true, backHref = '/projects' }) {
   return (
     <div className="bg-white dark:bg-neutral-900 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 border border-neutral-200 dark:border-neutral-800 p-4">
       <div className="flex flex-col sm:flex-row gap-4 items-start">
@@ -254,7 +261,11 @@ export function ProjectCard({ project, compact = false, href }) {
                     />
                   </svg>}>Source</OtherButton>
                 )}
-                <OtherButton href={href}>Read more</OtherButton>
+                {showReadMore ? (
+                  <OtherButton href={href}>Read more</OtherButton>
+                ) : (
+                  <OtherButton href={backHref}>← Back to projects</OtherButton>
+                )}
               </div>
             </div>
           )}
@@ -265,8 +276,8 @@ export function ProjectCard({ project, compact = false, href }) {
 }
 
 // Blog card component
-export function BlogCard({ post, compact = false, href }) {
-  const cardContent = (
+export function BlogCard({ post, compact = false, href, showReadMore = true, backHref = '/blog' }) {
+  return (
     <div className="bg-white dark:bg-neutral-900 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 border border-neutral-200 dark:border-neutral-800 p-4">
       <div className="flex flex-col sm:flex-row gap-4 items-start">
         <div className="flex-shrink-0 flex justify-center sm:justify-start">
@@ -314,24 +325,19 @@ export function BlogCard({ post, compact = false, href }) {
           <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">
             {post.metadata.summary}
           </p>
+          {!compact && (
+            <div className="flex flex-row gap-2 mt-1">
+              {showReadMore ? (
+                <CtaButton href={href}>Read</CtaButton>
+              ) : (
+                <OtherButton href={backHref}>← Back to blog</OtherButton>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>
   )
-  if (href) {
-    const isExternal = href.startsWith('http')
-    return (
-      <Link 
-        href={href} 
-        className="group block"
-        target={isExternal ? "_blank" : undefined}
-        rel={isExternal ? "noopener noreferrer" : undefined}
-      >
-        {cardContent}
-      </Link>
-    )
-  }
-  return cardContent
 }
 
 // Blog posts list component

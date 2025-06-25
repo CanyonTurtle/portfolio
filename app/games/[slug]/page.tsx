@@ -4,6 +4,7 @@ import { formatDate, getGames } from 'app/games/utils'
 import { baseUrl } from 'app/sitemap'
 import Link from 'next/link'
 import { getImageFullPath } from 'base-path'
+import { GameCard } from 'app/components/cards'
 
 // Import RoundedImage from the MDX components
 function RoundedImage(props) {
@@ -93,100 +94,7 @@ export default function Game({ params }) {
           }),
         }}
       />
-      
-      {/* Game Header with Image and CTA */}
-      <div className="mb-8">
-        <div className="flex flex-col lg:flex-row gap-6 items-start">
-          {/* Game Image */}
-          <div className="flex-shrink-0">
-            {game.metadata.image ? (
-              <RoundedImage
-                src={getImageFullPath(game.metadata.image)}
-                alt={game.metadata.title}
-                className="w-64 h-auto object-cover rounded-lg shadow-md"
-              />
-            ) : (
-              <div className="w-64 h-48 bg-gradient-to-br from-neutral-100 to-neutral-200 dark:from-neutral-800 dark:to-neutral-700 flex items-center justify-center rounded-lg shadow-md">
-                <div className="text-neutral-400 dark:text-neutral-500 text-6xl font-bold">
-                  {game.metadata.title.charAt(0)}
-                </div>
-              </div>
-            )}
-          </div>
-          
-          {/* Game Info and CTA */}
-          <div className="flex-1 min-w-0">
-            <h1 className="title font-semibold text-3xl tracking-tighter mb-4">
-              {game.metadata.title}
-            </h1>
-            
-            <div className="flex flex-wrap items-center gap-4 mb-4 text-sm">
-              <p className="text-neutral-600 dark:text-neutral-400">
-                {formatDate(game.metadata.publishedAt)}
-              </p>
-              {game.metadata.genre && (
-                <span className="bg-neutral-100 dark:bg-neutral-800 px-3 py-1 rounded-full text-neutral-700 dark:text-neutral-300">
-                  {game.metadata.genre}
-                </span>
-              )}
-              {game.metadata.platform && (
-                <span className="text-neutral-500 dark:text-neutral-500">
-                  {game.metadata.platform}
-                </span>
-              )}
-            </div>
-            
-            <p className="text-lg text-neutral-700 dark:text-neutral-300 mb-6 leading-relaxed">
-              {game.metadata.summary}
-            </p>
-            
-            {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-3">
-              {game.metadata.externalLink && (
-                <Link
-                  href={game.metadata.externalLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center px-6 py-3 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors duration-200 shadow-sm hover:shadow-md"
-                >
-                  Play now
-                </Link>
-              )}
-              {game.metadata.source && (
-                <Link
-                  href={game.metadata.source}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center px-3 py-1 text-xs font-medium text-neutral-700 dark:text-neutral-300 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded-md transition-colors duration-200"
-                >
-                  <svg
-                    className="w-3 h-3 mr-1"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-                    />
-                  </svg>
-                  View source
-                </Link>
-              )}
-              <Link
-                href="/games"
-                className="inline-flex items-center px-6 py-3 text-sm font-medium text-neutral-700 dark:text-neutral-300 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded-lg transition-colors duration-200"
-              >
-                ← Back to games
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      {/* Game Content */}
+      <GameCard game={game} showReadMore={false} backHref="/games" href={`/games/${game.slug}`}/>
       <article className="prose max-w-none">
         <CustomMDX source={game.content} />
       </article>
