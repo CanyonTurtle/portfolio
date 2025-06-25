@@ -1,3 +1,7 @@
+'use client'
+
+import { usePathname } from 'next/navigation'
+
 function ArrowIcon() {
   return (
     <svg
@@ -16,29 +20,23 @@ function ArrowIcon() {
 }
 
 export default function Footer() {
+  const pathname = usePathname()
+  
+  // Don't show footer on contact page
+  if (pathname === '/contact') {
+    return null
+  }
+
   return (
     <footer className="mb-16">
       <ul className="font-sm mt-8 flex flex-col space-x-0 space-y-2 text-neutral-600 md:flex-row md:space-x-4 md:space-y-0 dark:text-neutral-300">
         <li>
           <a
             className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
-            rel="noopener noreferrer"
-            target="_blank"
-            href="https://github.com/canyonturtle"
+            href="/contact"
           >
             <ArrowIcon />
-            <p className="ml-2 h-7">github</p>
-          </a>
-        </li>
-        <li>
-          <a
-            className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
-            rel="noopener noreferrer"
-            target="_blank"
-            href="https://www.linkedin.com/in/cannontuttle/"
-          >
-            <ArrowIcon />
-            <p className="ml-2 h-7">linkedin</p>
+            <p className="ml-2 h-7">contact</p>
           </a>
         </li>
       </ul>
