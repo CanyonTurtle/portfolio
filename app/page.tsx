@@ -41,7 +41,7 @@ export default function Page() {
         <h1 className="text-2xl font-semibold tracking-tighter">
           Cannon Tuttle's Portfolio
         </h1>
-        <div className="flex flex-row gap-4 mt-1 mb-2 text-sm text-neutral-600 dark:text-neutral-400">
+        <div className="flex flex-row flex-wrap gap-x-4 gap-y-1 mt-1 mb-2 text-sm text-neutral-600 dark:text-neutral-400 leading-tight">
           <a href="https://www.linkedin.com/in/cannontuttle" target="_blank" rel="noopener noreferrer" className="hover:underline">linkedin.com/in/cannontuttle</a>
           <span>·</span>
           <a href="mailto:cannontuttlework@gmail.com" className="hover:underline">cannontuttlework@gmail.com</a>
