@@ -18,7 +18,7 @@ export function CareerCard({ post, compact = false, href }) {
             <RoundedImage
               src={getImageFullPath(post.metadata.image)}
               alt={post.metadata.title}
-              className="w-24 h-24 object-cover hover:scale-105 transition-transform duration-200 rounded-lg"
+              className="w-24 object-contain hover:scale-105 transition-transform duration-200 rounded-lg"
             />
           ) : (
             <div className="w-24 h-24 bg-gradient-to-br from-neutral-100 to-neutral-200 dark:from-neutral-800 dark:to-neutral-700 flex items-center justify-center rounded-lg">
@@ -117,7 +117,7 @@ export function GameCard({ game, compact = false, href }) {
             <RoundedImage
               src={getImageFullPath(game.metadata.image)}
               alt={game.metadata.title}
-              className="w-24 h-24 object-cover hover:scale-105 transition-transform duration-200 rounded-lg"
+              className="w-24 object-contain hover:scale-105 transition-transform duration-200 rounded-lg"
             />
           ) : (
             <div className="w-24 h-24 bg-gradient-to-br from-neutral-100 to-neutral-200 dark:from-neutral-800 dark:to-neutral-700 flex items-center justify-center rounded-lg">
@@ -203,7 +203,7 @@ export function ProjectCard({ project, compact = false, href }) {
             <RoundedImage
               src={getImageFullPath(project.metadata.image)}
               alt={project.metadata.title}
-              className="w-24 h-24 object-cover hover:scale-105 transition-transform duration-200 rounded-lg"
+              className="w-24 object-contain hover:scale-105 transition-transform duration-200 rounded-lg"
             />
           ) : (
             <div className="w-24 h-24 bg-gradient-to-br from-neutral-100 to-neutral-200 dark:from-neutral-800 dark:to-neutral-700 flex items-center justify-center rounded-lg">
@@ -289,7 +289,7 @@ export function BlogCard({ post, compact = false, href }) {
             <RoundedImage
               src={getImageFullPath(post.metadata.image)}
               alt={post.metadata.title}
-              className="w-24 h-24 object-cover group-hover:scale-105 transition-transform duration-200 rounded-lg"
+              className="w-24 object-contain group-hover:scale-105 transition-transform duration-200 rounded-lg"
             />
           ) : (
             <div className="w-24 h-24 bg-gradient-to-br from-neutral-100 to-neutral-200 dark:from-neutral-800 dark:to-neutral-700 flex items-center justify-center rounded-lg">
