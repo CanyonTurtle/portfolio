@@ -12,8 +12,8 @@ function RoundedImage(props) {
 export function CareerCard({ post, compact = false, href }) {
   return (
     <div className="bg-white dark:bg-neutral-900 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 border border-neutral-200 dark:border-neutral-800 p-4">
-      <div className="flex gap-4">
-        <div className="flex-shrink-0">
+      <div className="flex flex-col sm:flex-row gap-4 items-start">
+        <div className="flex-shrink-0 flex justify-center sm:justify-start">
           {post.metadata.image ? (
             <RoundedImage
               src={getImageFullPath(post.metadata.image)}
@@ -111,8 +111,8 @@ export function CareerCard({ post, compact = false, href }) {
 export function GameCard({ game, compact = false, href }) {
   return (
     <div className="bg-white dark:bg-neutral-900 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 border border-neutral-200 dark:border-neutral-800 p-4">
-      <div className="flex gap-4">
-        <div className="flex-shrink-0">
+      <div className="flex flex-col sm:flex-row gap-4 items-start">
+        <div className="flex-shrink-0 flex justify-center sm:justify-start">
           {game.metadata.image ? (
             <RoundedImage
               src={getImageFullPath(game.metadata.image)}
@@ -197,8 +197,8 @@ export function GameCard({ game, compact = false, href }) {
 export function ProjectCard({ project, compact = false, href }) {
   return (
     <div className="bg-white dark:bg-neutral-900 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 border border-neutral-200 dark:border-neutral-800 p-4">
-      <div className="flex gap-4">
-        <div className="flex-shrink-0">
+      <div className="flex flex-col sm:flex-row gap-4 items-start">
+        <div className="flex-shrink-0 flex justify-center sm:justify-start">
           {project.metadata.image ? (
             <RoundedImage
               src={getImageFullPath(project.metadata.image)}
@@ -283,8 +283,8 @@ export function ProjectCard({ project, compact = false, href }) {
 export function BlogCard({ post, compact = false, href }) {
   const cardContent = (
     <div className="bg-white dark:bg-neutral-900 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 border border-neutral-200 dark:border-neutral-800 p-4">
-      <div className="flex gap-4">
-        <div className="flex-shrink-0">
+      <div className="flex flex-col sm:flex-row gap-4 items-start">
+        <div className="flex-shrink-0 flex justify-center sm:justify-start">
           {post.metadata.image ? (
             <RoundedImage
               src={getImageFullPath(post.metadata.image)}
