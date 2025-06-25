@@ -41,6 +41,11 @@ export default function Page() {
         <h1 className="text-2xl font-semibold tracking-tighter">
           Cannon Tuttle's Portfolio
         </h1>
+        <div className="flex flex-row gap-4 mt-1 mb-2 text-sm text-neutral-600 dark:text-neutral-400">
+          <a href="https://www.linkedin.com/in/cannontuttle" target="_blank" rel="noopener noreferrer" className="hover:underline">linkedin.com/in/cannontuttle</a>
+          <span>·</span>
+          <a href="mailto:cannontuttlework@gmail.com" className="hover:underline">cannontuttlework@gmail.com</a>
+        </div>
       </div>
       <p className="mb-8 text-neutral-700 dark:text-neutral-300 leading-relaxed">
         {`I'm a dedicated software engineer with a natural curiosity for and a growing skillset of fullstack skills like programming, system design, networking, and security. Not only do I have industry experience working at Redo, but I also love to make my own projects - especially games! I also have a mathematical literacy that allows me to model and optimize complex systems, especially with uncertainties.`}
