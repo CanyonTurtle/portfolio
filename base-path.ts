@@ -2,7 +2,7 @@
 const isProd = process.env.NODE_ENV === 'production';
 
 export const baseUri = "https://canyonturtle.github.io";
-export const basePath = isProd ? '/portfolio' : '';
+export const basePath = isProd ? '' : '';
 export const assetPrefix = undefined;
 
 export const baseUrl = `${baseUri}${basePath}`;
