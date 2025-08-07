@@ -32,7 +32,7 @@ export default function Page() {
     <section>
       <div className="flex flex-col items-start mb-8">
         <Image
-          src={getImageFullPath("/images/profile-picture.png")}
+          src={getImageFullPath("/images/profile-picture.jpeg")}
           alt="Profile picture"
           width={192}
           height={192}
